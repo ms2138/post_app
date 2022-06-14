@@ -1,0 +1,11 @@
+<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #01a767;">
+	<div class="d-flex align-items-center justify-content-center min-vh-100">
+		<ul class="nav flex-column align-items-end" id="menu">
+			<% if user_signed_in? %>
+			<li class="nav-item">
+				<%= link_to "Profile", current_user, alt: 'Profile', title: 'Profile', class: "nav-link link-light" %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
