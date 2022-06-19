@@ -1,7 +1,10 @@
-<div id="<%= dom_id feed %>">
-  <p>
-    <strong>Name:</strong>
-    <%= feed.name %>
-  </p>
-
+<div class="mx-5 my-5 d-flex justify-content-between" id="<%= dom_id feed %>">
+  <%= link_to feed, data: { turbo_frame: "_top" } do %>
+    <h1 class="text-muted m-0">
+      <%= feed.name %>
+    </h1>
+  <% end %>
+  <h1 class="text-align-bottom m-0">
+    <span class="badge bg-dark"><%= feed.posts.size %></span>
+  </h1>
 </div>
