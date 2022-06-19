@@ -25,7 +25,7 @@
         <div class="card-body text-black">
           <div id="posts">
             <% @posts.each do |post| %>
-              <%= render post %>
+              <%= render 'posts/post_preview', post: post %>
               <hr/>
             <% end %>
             <%= render "shared/pagination" %>
