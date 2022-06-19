@@ -1,9 +1,15 @@
-<h1>New feed</h1>
+<% provide(:title, "New Feed") %>
 
-<%= render "form", feed: @feed %>
-
-<br>
-
-<div>
-  <%= link_to "Back to feeds", feeds_path %>
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <div class="card">
+      <div class="card-body p-4">
+        <h1 class="card-title mb-4 text-center">New feed</h1>
+        <div class="">
+          <%= render "form", feed: @feed %>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
