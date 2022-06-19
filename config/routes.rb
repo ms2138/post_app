@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'users/show'
+  get 'pages/about'
+  get 'pages/home'
+
   resources :posts
   resources :feeds
   devise_for :users
