@@ -17,6 +17,19 @@ h1, h2, h3, h4, h5, h6 {
   height: 150px;
 }
 
+.post {
+  a {
+    color: rgb(0, 0, 0);
+    &:hover {
+      color: rgb(94, 94, 94);
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
 #error_explanation {
   ul {
     padding: 0px;
