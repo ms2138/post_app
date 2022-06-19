@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+@public_feed = Feed.create!(name: "Public")
+@private_feed = Feed.create!(name: "Private")
+
+20.times do |i|
+  username = Faker::Internet.username
+  email = "jdoe#{i}@example.com"
+  password = "foobar12"
+  @user = User.create!(username: username, email: email, password: password, password_confirmation: password)
+  20.times do |i|
+    @user.posts.create!(title: Faker::Lorem.sentence(word_count: 5), body: Faker::Lorem.paragraph(sentence_count: 20, random_sentences_to_add: 10), feed_id: @public_feed.id)
+  end
+end
