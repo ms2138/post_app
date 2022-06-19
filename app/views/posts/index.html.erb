@@ -1,14 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Posts</h1>
+<% provide(:title, "Posts") %>
 
 <div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+  <%= turbo_frame_tag "posts_paginate" do %>
+    <% @posts.each do |post| %>
+      <%= render 'post_preview', post: post %>
+      <hr/>
+    <% end %>
+    <%= render "shared/pagination" %>
   <% end %>
 </div>
-
-<%= link_to "New post", new_post_path %>

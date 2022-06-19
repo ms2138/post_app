@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[ index new create edit update destroy ]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @pagy, @posts = pagy(@user.posts.order("created_at DESC"))
   end
 
   # GET /posts/1 or /posts/1.json
@@ -61,6 +62,11 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def set_user
+      @user = current_user
+      redirect_to root_url if @user.nil?
     end
 
     # Only allow a list of trusted parameters through.
