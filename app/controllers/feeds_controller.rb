@@ -3,7 +3,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds or /feeds.json
   def index
-    @feeds = Feed.all
+    @pagy, @feeds = pagy(Feed.all.order("created_at DESC"))
   end
 
   # GET /feeds/1 or /feeds/1.json

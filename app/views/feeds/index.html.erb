@@ -1,14 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Feeds</h1>
+<% provide(:title, "Feeds") %>
 
 <div id="feeds">
-  <% @feeds.each do |feed| %>
-    <%= render feed %>
-    <p>
-      <%= link_to "Show this feed", feed %>
-    </p>
+  <%= turbo_frame_tag "feeds_paginate" do %>
+    <% @feeds.each do |feed| %>
+      <%= render feed %>
+      <hr/>
+    <% end %>
+    <%= render "shared/pagination" %>
   <% end %>
 </div>
-
-<%= link_to "New feed", new_feed_path %>
