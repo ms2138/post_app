@@ -1,6 +1,20 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+html, body {
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+.gravatar {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
 #error_explanation {
   ul {
     padding: 0px;
