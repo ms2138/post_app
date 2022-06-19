@@ -1,10 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<% provide(:title, @feed.name) %>
 
-<%= render @feed %>
-
-<div>
-  <%= link_to "Edit this feed", edit_feed_path(@feed) %> |
-  <%= link_to "Back to feeds", feeds_path %>
-
-  <%= button_to "Destroy this feed", @feed, method: :delete %>
+<div id="feeds">
+  <% if @posts.length != 0 %>
+    <%= turbo_frame_tag "feed_paginate" do %>
+      <% @posts.each do |post| %>
+        <%= render 'posts/post_preview', post: post %>
+        <hr/>
+      <% end %>
+      <%= render "shared/pagination" %>
+    <% end %>
+  <% else %>
+    <h1>No posts</h1>
+  <% end %>
 </div>

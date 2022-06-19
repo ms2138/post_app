@@ -8,6 +8,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds/1 or /feeds/1.json
   def show
+    @pagy, @posts = pagy(@feed.posts.order("created_at DESC"))
   end
 
   # GET /feeds/new
