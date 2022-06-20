@@ -1,13 +1,15 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update new create destroy ]
 
   # GET /comments or /comments.json
   def index
-    @comments = Comment.all
+    @comments = @post.comments.order("created_at")
   end
 
   # GET /comments/1 or /comments/1.json
   def show
+    @comments = @post.comments.order("created_at DESC")
   end
 
   # GET /comments/new
@@ -21,12 +23,16 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @post.comments.build(comment_params)
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to comment_url(@comment), notice: "Comment was successfully created." }
-        format.json { render :show, status: :created, location: @comment }
+        format.turbo_stream do
+          render turbo_stream:  [
+           turbo_stream.update('new_comment', partial: 'comments/form', locals: { post: @post, comment: Comment.new } ),
+           turbo_stream.prepend('comments', partial: 'comments/comment', locals: { post: @post, comment: @comment } )
+          ]
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -61,6 +67,10 @@ class CommentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
+    end
+
+    def set_post
+      @post = Post.find(params[:post_id])
     end
 
     # Only allow a list of trusted parameters through.
