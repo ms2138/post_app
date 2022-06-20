@@ -3,8 +3,8 @@
         <h1><%= post.title %></h1>
       <% end %>
     
-    <p class="text-muted">
-      <%= link_to "#{time_ago_in_words(post.created_at).upcase} AGO", post, class: "me-2", data: { turbo_frame: "_top" } %>
+    <p>
+      <span class="me-2"><%= time_ago_in_words(post.created_at).upcase %> AGO</span>
     </p>
     
     <p>
