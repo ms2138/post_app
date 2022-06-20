@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'pages/welcome'
 
   resources :posts do 
-    resources :comments
+    resources :comments, only: [:create, :destroy]
   end
   resources :feeds
   devise_for :users
