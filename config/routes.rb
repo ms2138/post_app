@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/welcome'
 
-  resources :posts
+  resources :posts do 
+    resources :comments
+  end
   resources :feeds
   devise_for :users
 
