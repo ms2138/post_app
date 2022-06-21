@@ -4,6 +4,6 @@
   <% end %>
 
   <p>
-    <span><%= post.user.username.upcase %> - <%= link_to "#{time_ago_in_words(post.created_at).upcase} AGO", post, class: "me-2", data: { turbo_frame: "_top" } %></span>
+    <span><%= link_to post.user.username.upcase, post.user, data: { turbo_frame: "_top" } %> - <%= link_to "#{time_ago_in_words(post.created_at).upcase} AGO", post, class: "me-2", data: { turbo_frame: "_top" } %></span>
   </p>
 </div>
