@@ -4,7 +4,7 @@
       <% end %>
     
     <p>
-      <span class="me-2"><%= time_ago_in_words(post.created_at).upcase %> AGO</span>
+      <span class="me-2"><%= post.user.username.upcase %> - <%= time_ago_in_words(post.created_at).upcase %> AGO</span>
     </p>
     
     <p>
