@@ -10,7 +10,9 @@
             Vivamus integer non suscipit taciti mus etiam at primis tempor sagittis sit, euismod libero facilisi aptent elementum 
             felis blandit cursus gravida sociis erat ante, eleifend lectus nullam dapibus netus feugiat curae curabitur est ad.
           </p>
-          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+          <% if !user_signed_in? %>
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+          <% end %>
       </div>
   </div>
 </div>
