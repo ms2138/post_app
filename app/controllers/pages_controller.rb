@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   end
 
   def home
+    @pagy, @posts = pagy(Post.all.order("created_at DESC"))
   end
 
   def welcome

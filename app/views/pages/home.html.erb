@@ -1,2 +1,12 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% provide(:title, "Home") %>
+
+<div id="posts">
+  <%= turbo_frame_tag "posts_paginate" do %>
+    <% @posts.each do |post| %>
+      <%= render 'posts/post_preview', post: post %>
+      <hr/>
+    <% end %>
+    <%= render "shared/pagination" %>
+  <% end %>
+</div>
+
