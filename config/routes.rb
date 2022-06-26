@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  get 'users/show'
-  resources :posts
+  get 'pages/about'
+  get 'pages/home'
+  get 'pages/welcome'
+
+  resources :posts do 
+    resources :comments, only: [:create, :destroy]
+  end
   resources :feeds
   devise_for :users
 
@@ -8,5 +13,5 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "posts#index"
+  root "pages#welcome"
 end

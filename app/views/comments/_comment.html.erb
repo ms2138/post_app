@@ -1,0 +1,13 @@
+<div class="mx-3 my-3" id="<%= dom_id comment %>">
+  <div class="mb-2 d-flex justify-content-between">
+    <div>
+      <strong class="pe-1"><%= comment.name %></strong>
+      <%= time_ago_in_words(comment.created_at).upcase %> AGO
+    </div>
+    <strong class="pe-1">
+      <%= link_to "Delete", [@post, comment], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    </strong>
+  </div>
+  <p><%= comment.content %></p>
+  <hr/>
+</div>

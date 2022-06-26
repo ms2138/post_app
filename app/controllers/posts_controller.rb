@@ -9,6 +9,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @pagy, @comments = pagy(@post.comments.order("created_at DESC"))
+    @comment = Comment.new
   end
 
   # GET /posts/new

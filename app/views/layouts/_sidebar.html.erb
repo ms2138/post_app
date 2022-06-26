@@ -1,6 +1,13 @@
 <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #01a767;">
 	<div class="d-flex align-items-center justify-content-center min-vh-100">
 		<ul class="nav flex-column align-items-end" id="menu">
+			<li class="nav-item" id="logo">
+				<% if user_signed_in? %>
+					<%= link_to "Home", pages_home_path, class: "nav-link link-light" %>
+				<% else %>
+					<%= link_to "Posts", pages_welcome_path, class: "nav-link pb-3 link-light" %>
+				<% end %>
+			</li>
 			<% if user_signed_in? %>
 				<li class="nav-item">
 					<%= link_to "Posts", posts_path, class: "nav-link link-light" %>
@@ -12,6 +19,9 @@
 					<%= link_to "Profile", current_user, alt: 'Profile', title: 'Profile', class: "nav-link link-light" %>
 				</li>
 			<% end %>
+			<li class="nav-item">
+				<%= link_to "About", pages_about_path, class: "nav-link link-light" %>
+			</li>
 		</ul>
 	</div>
 </div>

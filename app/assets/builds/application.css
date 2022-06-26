@@ -18461,6 +18461,28 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-weight: 600;
 }
 
+#logo {
+  color: white;
+  font-size: 2.1em;
+  font-weight: bold;
+  text-decoration: none;
+}
+#logo span {
+  color: white;
+  text-transform: uppercase;
+}
+
+.sidebar::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #DB4ECB;
+  z-index: -1;
+  margin-left: -35px;
+}
+
 hr {
   margin: 1rem 0px;
   color: rgb(110, 110, 110);

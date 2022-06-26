@@ -1,0 +1,12 @@
+<% provide(:title, "Home") %>
+
+<div id="posts">
+  <%= turbo_frame_tag "posts_paginate" do %>
+    <% @posts.each do |post| %>
+      <%= render 'posts/post_preview', post: post %>
+      <hr/>
+    <% end %>
+    <%= render "shared/pagination" %>
+  <% end %>
+</div>
+
