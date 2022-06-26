@@ -4,9 +4,11 @@
       <% end %>
     
     <p>
-      <span class="me-2"><%= link_to post.user.username.upcase, post.user %> - <%= time_ago_in_words(post.created_at).upcase %> AGO</span>
-    </p>
-    
+    <span class="me-2">
+      Posted to <%= link_to post.feed.name, post.feed, data: { turbo_frame: "_top" } %>
+      by <%= link_to post.user.username, post.user %> 
+      - <%= time_ago_in_words(post.created_at).upcase %> AGO
+    </span>
     <p>
       <%= post.body %>
     </p>
