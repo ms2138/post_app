@@ -73,3 +73,5 @@ end
 gem "faker", "~> 2.21"
 
 gem "pagy", "~> 5.10"
+
+gem "pundit", "~> 2.2"
