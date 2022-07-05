@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :set_user, only: %i[ index new create edit update destroy ]
+  after_action :verify_authorized
 
   # GET /posts or /posts.json
   def index
     @pagy, @posts = pagy(@user.posts.order("created_at DESC"))
+    authorize @posts
   end
 
   # GET /posts/1 or /posts/1.json
@@ -15,7 +17,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = @user.posts.new
+    @post = authorize @user.posts.new
   end
 
   # GET /posts/1/edit
@@ -24,7 +26,7 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = @user.posts.build(post_params)
+    @post = authorize @user.posts.build(post_params)
 
     respond_to do |format|
       if @post.save
@@ -63,7 +65,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = authorize Post.find(params[:id])
     end
 
     def set_user

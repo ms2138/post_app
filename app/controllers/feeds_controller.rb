@@ -1,19 +1,22 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: %i[ show edit update destroy ]
-
+  after_action :verify_authorized
+  
   # GET /feeds or /feeds.json
   def index
     @pagy, @feeds = pagy(Feed.all.order("created_at DESC"))
+    authorize @feeds
   end
 
   # GET /feeds/1 or /feeds/1.json
   def show
     @pagy, @posts = pagy(@feed.posts.order("created_at DESC"))
+    authorize @posts
   end
 
   # GET /feeds/new
   def new
-    @feed = Feed.new
+    @feed = authorize Feed.new
   end
 
   # GET /feeds/1/edit
@@ -22,7 +25,7 @@ class FeedsController < ApplicationController
 
   # POST /feeds or /feeds.json
   def create
-    @feed = Feed.new(feed_params)
+    @feed = authorize Feed.new(feed_params)
 
     respond_to do |format|
       if @feed.save
@@ -61,7 +64,7 @@ class FeedsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_feed
-      @feed = Feed.find(params[:id])
+      @feed = authorize Feed.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
