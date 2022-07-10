@@ -1,14 +1,16 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ destroy ]
   before_action :set_post, only: %i[ new create destroy ]
+  after_action :verify_authorized
+
   # GET /comments/new
   def new
-    @comment = Comment.new
+    @comment = authorize Comment.new
   end
 
   # POST /comments or /comments.json
   def create
-    @comment = @post.comments.build(comment_params)
+    @comment = authorize @post.comments.build(comment_params)
 
     respond_to do |format|
       if @comment.save
@@ -38,15 +40,15 @@ class CommentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
-      @comment = Comment.find(params[:id])
+      @comment = authorize Comment.find(params[:id])
     end
 
     def set_post
-      @post = Post.find(params[:post_id])
+      @post = authorize Post.find(params[:post_id])
     end
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:name, :content, :post_id)
+      params.require(:comment).permit(:name, :content, :post_id, :user_id)
     end
 end
