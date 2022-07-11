@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ destroy ]
-  before_action :set_post, only: %i[ new create destroy ]
+  before_action :set_post, only: %i[ new create ]
   after_action :verify_authorized
 
   # GET /comments/new
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.turbo_stream do
           render turbo_stream:  [
-           turbo_stream.update('new_comment', partial: 'comments/form', locals: { post: @post, comment: Comment.new } ),
+           turbo_stream.update('new_comment', partial: 'comments/form', locals: { user: @post.user, post: @post, comment: Comment.new } ),
            turbo_stream.prepend('comments', partial: 'comments/comment', locals: { post: @post, comment: @comment } )
           ]
         end
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to [@post, @comment], notice: "Comment was successfully destroyed." }
+      format.html { redirect_to [@comment.post, @comment], notice: "Comment was successfully destroyed." }
       format.json { head :no_content }
     end
   end
