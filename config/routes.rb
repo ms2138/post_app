@@ -3,13 +3,15 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/welcome'
 
-  resources :posts do 
-    resources :comments, only: [:create, :destroy]
-  end
   resources :feeds
   devise_for :users
 
-  resources :users, only: [:show]
+  resources :users, only: [:show], shallow: true do
+    resources :posts do
+      resources :comments, only: [:create, :destroy]
+    end
+  end
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
