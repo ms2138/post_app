@@ -8,6 +8,7 @@
       Posted to <%= link_to post.feed.name, post.feed, data: { turbo_frame: "_top" } %>
       by <%= link_to post.user.username, post.user %> 
       - <%= time_ago_in_words(post.created_at).upcase %> AGO
+      - <%= link_to "Edit", edit_post_path(post) %>
     </span>
     <p>
       <%= post.body %>
