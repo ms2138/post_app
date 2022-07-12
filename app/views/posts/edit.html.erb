@@ -1,10 +1,15 @@
-<h1>Editing post</h1>
+<% provide(:title, "Edit Post") %>
 
-<%= render "form", post: @post %>
-
-<br>
-
-<div>
-  <%= link_to "Show this post", @post %> |
-  <%= link_to "Back to posts", posts_path %>
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <div class="card">
+      <div class="card-body p-4">
+        <h1 class="card-title mb-4 text-center">Edit post</h1>
+        <div class="">
+          <%= render "form", user: nil, post: @post %>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
