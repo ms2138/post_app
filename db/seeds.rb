@@ -14,6 +14,7 @@
   email = "jdoe#{i}@example.com"
   password = "foobar12"
   @user = User.create!(username: username, email: email, password: password, password_confirmation: password)
+  @user.confirm
   20.times do |i|
     @user.posts.create!(title: Faker::Lorem.sentence(word_count: 5), body: Faker::Lorem.paragraph(sentence_count: 20, random_sentences_to_add: 10), feed_id: @public_feed.id)
   end
