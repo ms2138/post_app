@@ -9812,11 +9812,9 @@
           field: "text",
           direction: "asc"
         },
-        plugins: {
-          remove_button: {
-            title: "Remove this item"
-          }
-        }
+        allowEmptyOption: false,
+        maxItems: 1,
+        plugins: ["no_backspace_delete"]
       });
     }
   };
