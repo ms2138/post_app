@@ -2,10 +2,14 @@
 
 <div id="posts">
   <%= turbo_frame_tag "posts_paginate" do %>
-    <% @posts.each do |post| %>
-      <%= render 'post_preview', post: post %>
-      <hr/>
+    <% if @posts.present? %>
+      <% @posts.each do |post| %>
+        <%= render 'post_preview', post: post %>
+        <hr/>
+      <% end %>
+      <%= render "shared/pagination" %>
+    <% else %>
+      <h4>No results found</h4>
     <% end %>
-    <%= render "shared/pagination" %>
   <% end %>
 </div>

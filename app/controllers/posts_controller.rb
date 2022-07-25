@@ -5,8 +5,13 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @pagy, @posts = pagy(@user.posts.order("created_at DESC"))
-    authorize @posts
+    if params[:query].blank?
+      @pagy, @posts = pagy(@user.posts.order("created_at DESC"))
+      authorize @posts
+    else
+      @pagy, @posts = pagy(Post.filter_by_title(params[:query]).order("created_at DESC"))
+      authorize @posts
+    end
   end
 
   # GET /posts/1 or /posts/1.json

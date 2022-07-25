@@ -8,6 +8,11 @@
         <ul class="navbar-nav ms-auto gap-2">
           <% if user_signed_in? %>
             <li class="nav-item">
+              <%= form_with url: user_posts_path(current_user), method: :get, local: true, class: 'form-inline' do |form| %>
+						    <%= form.text_field :query, value: params[:query], class: 'form-control', placeholder: 'Search...' %>
+					    <% end %>
+            </li>
+            <li class="nav-item">
               <%= link_to "New Post", new_user_post_path(current_user), class: "btn btn-outline-light" %>
             </li>
             <li class="nav-item">
